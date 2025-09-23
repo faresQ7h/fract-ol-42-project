@@ -6,7 +6,7 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 01:08:26 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/22 04:43:53 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/23 04:55:39 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ int	main(int argc, char **argv)
 		param.win = mlx_new_window(param.mlx, 821, 921, "Mandelbrot fract-ol");
 	else
 		param.win = mlx_new_window(param.mlx, 821, 921, "Julia fract-ol");
+	param.mouse_x = -1;
+	param.mouse_y = -1;
+	param.width = 821;
+	param.hight = 921;
+	param.redraw = 1;
+	param.zoom = 1;
+	param.img = NULL;
+	param.x_len = 6;
+	param.y_len = (param.hight * param.x_len)/param.width;
+	param.x_start = 3;
+	param.y_start = param.y_len / 2;
 	hook_all_events(&param);
 	mlx_loop(param.mlx);
 }

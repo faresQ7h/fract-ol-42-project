@@ -6,7 +6,7 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 03:16:00 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/22 04:55:22 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/23 05:58:47 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,20 @@ int	close_window(t_param *param)
 
 int	handel_mouse(int button, int x, int y, t_param *param)
 {
-	(void)x;
-	(void)y;
 	if (button == MOUSE_SCROLL_UP)
-		param->zoom *= 1.1;
+	{
+		param->redraw = 1;
+		param->zoom /= 1.04;
+		param->mouse_x = x;
+		param->mouse_y = y;
+	}
 	else if (button == MOUSE_SCROLL_DOWN)
-		param->zoom /= 1.1;
+	{
+		param->redraw = 1;
+		param->zoom *= 1.04;
+		param->mouse_x = x;
+		param->mouse_y = y;
+	}
 	// Later:
 	// Left click to re-center the view
 	// Right click to reset zoom
@@ -39,17 +47,22 @@ int	handel_key(int keycode, t_param *param)
 	if (keycode == ESC_KEY)
 		exit(0);
 	if (keycode == PLUS_KEY)
+	{
 		param->zoom *= 1.1;
+		param->redraw = 1;
+	}
 	else if (keycode == MINUS_KEY)
+	{
 		param->zoom /= 1.1;
+		param->redraw = 1;
+	}
 	return (0);
 }
 
 void	hook_all_events(t_param *param)
 {
-	param->redraw = 1;
 	mlx_hook(param->win, 17, 0, close_window, param);
 	mlx_key_hook(param->win, handel_key, param);
 	mlx_mouse_hook(param->win, handel_mouse, param);
-	// mlx_loop_hook(param->mlx, render_fractal, param);
+	mlx_loop_hook(param->mlx, render_fractal, param);
 }

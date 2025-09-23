@@ -6,7 +6,7 @@
 #    By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/22 00:58:57 by farmoham          #+#    #+#              #
-#    Updated: 2025/09/22 04:46:07 by farmoham         ###   ########.fr        #
+#    Updated: 2025/09/23 06:02:32 by farmoham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ else
 endif
 
 NAME = fract-ol
-SRC = main.c hook.c
+SRC = main.c hook.c render.c color.c
 OBJ = $(SRC:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
