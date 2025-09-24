@@ -6,18 +6,21 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 04:50:08 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/23 06:11:47 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/23 17:42:36 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+int color(t_param *p, t_complex nm, int mandel, int endain)
+{
+    int iter;
+    int r;
+    int g;
+    int b;
 
-
-// int color(t_param *p, t_complex nm, int mandel, int endain)
-// {
-//     int iter;
-// }
+    iter = is_in_set(nm, mandel);
+}
 
 void   set_colors(t_param *p, int mandel, int endian, char *row)
 {
@@ -39,7 +42,7 @@ void   set_colors(t_param *p, int mandel, int endian, char *row)
         nm.x = p->x_start;
         while(j < width)
         {
-            *((int*)row) = 0xFFFF00;//color(p, nm, mandel, endian);
+            *((int*)row) = color(p, nm, mandel, endian);
             row += 4;
             j++;
             nm.x -= upp;

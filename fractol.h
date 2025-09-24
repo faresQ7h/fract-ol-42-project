@@ -6,7 +6,7 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 00:51:37 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/23 05:59:51 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:27:17 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ typedef struct s_pixel
 	int	y;
 }			t_pixel;
 
+typedef	struct	s_format
+{
+	int nm_sign;
+	int nm_digits;
+	int dot;
+	int e;
+	int	e_digits;
+	int	e_sign;
+}			t_format;
+
 typedef struct s_param
 {
 	void	*mlx;
@@ -74,10 +84,12 @@ typedef struct s_param
 	int		bpp;
 	int		line_size;
 	int		endian;
+	t_complex c;
 }			t_param;
 
 void		hook_all_events(t_param *param);
 int			render_fractal(t_param *p);
 void   		set_colors(t_param *p, int mandel, int endian, char *img_mem);
+void	valid_input(char *x, char *y,t_format *form_x, t_format *form_y);
 
 #endif
