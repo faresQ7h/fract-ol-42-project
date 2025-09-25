@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fares-_-q7h <fares-_-q7h@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 01:08:26 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/24 03:57:45 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/25 09:22:04 by fares-_-q7h      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	check_input(t_param *p, int argc, char **argv)
 	t_format	form_x;
 	t_format	form_y;
 
-	(void)p;
 	msg = "Error: Invalid input\nusage: ./fract-ol"
 		"-m(Mandelbrot)\n   or: ./fract-ol -j(Julia) <x> <yi>\n";
 	if (argc == 2 && (!ft_strncmp(argv[1], "-m", ft_strlen(argv[1]))
@@ -30,7 +29,8 @@ int	check_input(t_param *p, int argc, char **argv)
 			|| !ft_strncmp(argv[1], "julia", ft_strlen(argv[1]))))
 	{
 		valid_input(argv[2], argv[3], &form_x, &form_y);
-		// p->c = parse_input(argv[2], argv[3]);
+		p->c.x = parse_input(argv[2], &form_x, 0);
+		p->c.y = parse_input(argv[3], &form_y, 0);
 		return (0);
 	}
 	ft_putstr_fd(msg, 2);
@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 	t_param	param;
 
 	param.mandel = check_input(&param, argc, argv);
+	printf("x: %.17g\ny: %f\n", param.c.x, param.c.y);
 	// param.mlx = mlx_init();
 	// if (param.mandel)
 	// 	param.win = mlx_new_window(param.mlx, 821, 921, "Mandelbrot fract-ol");

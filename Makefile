@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+         #
+#    By: fares-_-q7h <fares-_-q7h@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/22 00:58:57 by farmoham          #+#    #+#              #
-#    Updated: 2025/09/23 23:49:26 by farmoham         ###   ########.fr        #
+#    Updated: 2025/09/25 07:52:53 by fares-_-q7h      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ else
 endif
 
 NAME = fract-ol
-SRC = main.c valid.c
+SRC = main.c valid.c parse.c
 OBJ = $(SRC:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

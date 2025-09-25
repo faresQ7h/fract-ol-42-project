@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fares-_-q7h <fares-_-q7h@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 00:51:37 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/24 02:27:17 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/25 07:53:43 by fares-_-q7h      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # include "libftprintf/libft/libft.h"
 # include <math.h>
 # include <stdlib.h>
+# include <stdio.h> 
 # include <sys/time.h>
 
 typedef struct s_complex
@@ -90,6 +91,7 @@ typedef struct s_param
 void		hook_all_events(t_param *param);
 int			render_fractal(t_param *p);
 void   		set_colors(t_param *p, int mandel, int endian, char *img_mem);
-void	valid_input(char *x, char *y,t_format *form_x, t_format *form_y);
+void		valid_input(char *x, char *y,t_format *form_x, t_format *form_y);
+double		parse_input(char *nm, t_format *form, int nm_len);
 
 #endif
