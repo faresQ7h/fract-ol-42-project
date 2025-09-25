@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fares-_-q7h <fares-_-q7h@student.42.fr>    +#+  +:+       +#+        */
+/*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 01:08:26 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/25 09:22:04 by fares-_-q7h      ###   ########.fr       */
+/*   Updated: 2025/09/25 13:04:17 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	check_input(t_param *p, int argc, char **argv)
 {
-	char	*msg;
+	char		*msg;
 	t_format	form_x;
 	t_format	form_y;
 
 	msg = "Error: Invalid input\nusage: ./fract-ol"
-		"-m(Mandelbrot)\n   or: ./fract-ol -j(Julia) <x> <yi>\n";
+			"-m(Mandelbrot)\n   or: ./fract-ol -j(Julia) <x> <yi>\n";
 	if (argc == 2 && (!ft_strncmp(argv[1], "-m", ft_strlen(argv[1]))
 			|| !ft_strncmp(argv[1], "Mandelbrot", ft_strlen(argv[1]))
 			|| !ft_strncmp(argv[1], "mandelbrot", ft_strlen(argv[1]))))
@@ -42,21 +42,20 @@ int	main(int argc, char **argv)
 	t_param	param;
 
 	param.mandel = check_input(&param, argc, argv);
-	printf("x: %.17g\ny: %f\n", param.c.x, param.c.y);
-	// param.mlx = mlx_init();
-	// if (param.mandel)
-	// 	param.win = mlx_new_window(param.mlx, 821, 921, "Mandelbrot fract-ol");
-	// else
-	// 	param.win = mlx_new_window(param.mlx, 821, 921, "Julia fract-ol");
-	// param.width = 821;
-	// param.hight = 921;
-	// param.redraw = 1;
-	// param.zoom = 1;
-	// param.img = NULL;
-	// param.x_len = 6;
-	// param.y_len = (param.hight * param.x_len) / param.width;
-	// param.x_start = 3;
-	// param.y_start = param.y_len / 2;
-	// hook_all_events(&param);
-	// mlx_loop(param.mlx);
+	param.mlx = mlx_init();
+	if (param.mandel)
+		param.win = mlx_new_window(param.mlx, 821, 921, "Mandelbrot fract-ol");
+	else
+		param.win = mlx_new_window(param.mlx, 821, 921, "Julia fract-ol");
+	param.width = 821;
+	param.hight = 921;
+	param.redraw = 1;
+	param.zoom = 1;
+	param.img = NULL;
+	param.x_len = 6;
+	param.y_len = (param.hight * param.x_len) / param.width;
+	param.x_start = 3;
+	param.y_start = param.y_len / 2;
+	hook_all_events(&param);
+	mlx_loop(param.mlx);
 }

@@ -129,6 +129,8 @@ double	parse_input(char *nm, t_format *form, int nm_len)
 		return (ft_putstr_fd("Error: overflow (double)\n", 2), exit(1), 0);
 	else if (k < -324 || (k == -324 && val < 4.9406564584124654))
 		return (ft_putstr_fd("Warning: detected double underflow);"
-				" treated as 0\n\n", 2), 0);
+								" treated as 0\n\n",
+								2),
+				0);
 	return (val * pow(10, k) * form->nm_sign);
 }
