@@ -6,7 +6,7 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 04:50:08 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/25 18:02:46 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:32:03 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ double	iterate_mandel(t_complex c, double zoom)
     r2 = z.x*z.x + z.y*z.y;
     if (r2 < 1e-300) 
         r2 = 1e-300;
-	return (1.0 - (iter + 1.0 - log(log(r2) / 2.0) / log(2.0)) / (double)max_iter);
+    return (1.0 - (iter + 1.0 - log(log(r2) / 2.0) / log(2.0)) / (double)max_iter);
 }
 
 double	iterate_julia(t_complex c, t_complex z, double zoom)
@@ -60,7 +60,7 @@ double	iterate_julia(t_complex c, t_complex z, double zoom)
     r2 = z.x*z.x + z.y*z.y;
 	if (r2 < 1e-300) 
         r2 = 1e-300;
-	return (1.0 - (iter + 1.0 - log(log(r2) / 2.0) / log(2.0)) / (double)max_iter);
+    return (1.0 - (iter + 1.0 - log(log(r2) / 2.0) / log(2.0)) / (double)max_iter);
 }
 
 int which_color(double t, int endian, int r[4], int g[4])

@@ -6,7 +6,7 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 01:08:26 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/25 13:04:17 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:23:46 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ int	main(int argc, char **argv)
 	param.hight = 921;
 	param.redraw = 1;
 	param.zoom = 1;
+	param.mouse_x = -1;
+	param.mouse_y = -1;
 	param.img = NULL;
-	param.x_len = 6;
-	param.y_len = (param.hight * param.x_len) / param.width;
-	param.x_start = 3;
-	param.y_start = param.y_len / 2;
+	param.base_upp = (6 / (double)param.width);
+	param.upp = param.base_upp;
+	param.x_start = -3;
+	param.y_start = (((param.hight * 6) / param.width) / 2) * param.upp;
 	hook_all_events(&param);
 	mlx_loop(param.mlx);
 }

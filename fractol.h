@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fares-_-q7h <fares-_-q7h@student.42.fr>    +#+  +:+       +#+        */
+/*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 00:51:37 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/25 07:53:43 by fares-_-q7h      ###   ########.fr       */
+/*   Updated: 2025/09/28 23:20:51 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ typedef struct s_param
 	double	x_start;
 	double	y_start;
 	double	upp;
-	double	x_len;
-	double	y_len;
+	double	base_upp;
 	int	    width;
 	int	    hight;
 	int		mandel;
