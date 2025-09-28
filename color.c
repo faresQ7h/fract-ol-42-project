@@ -6,7 +6,7 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 04:50:08 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/28 23:32:03 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:37:16 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void    set_colors(t_param *p, int mandel, int endian, char *row)
         {
             *(((int *)row) + j) = color(p, nm, mandel, endian);
             j++;
-            nm.x -= upp;
+            nm.x += upp;
         }
         i++;
         nm.y -= upp;

@@ -6,7 +6,7 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 02:29:50 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/28 23:31:43 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:42:40 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	set_center_range(t_param *p)
 {
-	double old_upp;
+	// double old_upp;
 	double mx;
 	double my;
 
 	if (p->mouse_x == -1 && p->mouse_y == -1)
 		return ;
-	old_upp = p->upp;
+	// old_upp = p->upp;
 	p->upp = p->base_upp * p->zoom;
 	mx = -(p->mouse_x * p->upp);
 	my = p->mouse_y * p->upp;
-	p->x_start += p->x_start + mx;
-	p->y_start += p->y_start - my;
+	p->x_start = mx;
+	p->y_start = my;
 }
 
 void	init_new_img(t_param *p)
