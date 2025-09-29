@@ -6,23 +6,74 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 04:50:08 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/30 00:45:31 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/30 01:24:32 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+//green
+// colors->r[0] = 0x00;
+// colors->r[1] = 0x39;
+// colors->r[2] = 0x6A;
+// colors->g[0] = 0x12;
+// colors->g[1] = 0xFF;
+// colors->g[2] = 0x0D;
+// colors->b[0] = 0x0F;
+// colors->b[1] = 0x14;
+// colors->b[2] = 0xAD;
+//megma
+// colors->r[0] = 0x0A;
+// colors->r[1] = 0xB3;
+// colors->r[2] = 0xFF;
+// colors->g[0] = 0x00;
+// colors->g[1] = 0x00;
+// colors->g[2] = 0xD1;
+// colors->b[0] = 0x10;
+// colors->b[1] = 0x8F;
+// colors->b[2] = 0x66;
+//gry
+// colors->r[0] = 0x00;
+// colors->r[1] = 0x77;
+// colors->r[2] = 0xFF;
+// colors->g[0] = 0x00;
+// colors->g[1] = 0x77;
+// colors->g[2] = 0xFF;
+// colors->b[0] = 0x00;
+// colors->b[1] = 0x77;
+// colors->b[2] = 0xFF;
+//best
+// colors->r[0] = 0x00;
+// colors->r[1] = 0x3A; 
+// colors->r[2] = 0xE6;
+// colors->g[0] = 0x12;
+// colors->g[1] = 0xA6;
+// colors->g[2] = 0xE6;
+// colors->b[0] = 0x0F;
+// colors->b[1] = 0x5C;
+// colors->b[2] = 0xE6;
+//gold
+//colors->r[0] = 0x0A;
+//colors->r[1] = 0x2B;
+//colors->r[2] = 0xE0;
+//colors->g[0] = 0x24;
+//colors->g[1] = 0xB3;
+//colors->g[2] = 0xF7;
+//colors->b[0] = 0x72;
+//colors->b[1] = 0xFF;
+//colors->b[2] = 0xFF;
+
 static void	init_colors(t_colors *colors)
 {
-	colors->r[0] = 0x0A;
-	colors->r[1] = 0x2B;
-	colors->r[2] = 0xE0;
-	colors->g[0] = 0x24;
-	colors->g[1] = 0xB3;
-	colors->g[2] = 0xF7;
-	colors->b[0] = 0x72;
-	colors->b[1] = 0xFF;
-	colors->b[2] = 0xFF;
+	colors->r[0] = 0x00;
+	colors->r[1] = 0x3A;
+	colors->r[2] = 0xD8;
+	colors->g[0] = 0x12;
+	colors->g[1] = 0xB0;
+	colors->g[2] = 0xD8;
+	colors->b[0] = 0x0F;
+	colors->b[1] = 0x5C;
+	colors->b[2] = 0xD8;
 }
 
 static int	make_color(t_colors *c, int seg, double f, int endian)
