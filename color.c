@@ -6,106 +6,113 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 04:50:08 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/29 04:44:20 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:07:22 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int which_color(double t2, int endian)
+static void	init_colors(t_colors *colors)
 {
-    int r[3];
-    int g[3];
-    int b[3];
-    int seg;
-    double f;
-
-    r[0] = 0x0A;
-    r[1] = 0x2B;
-    r[2] = 0xE0;
-    g[0] = 0x24;
-    g[1] = 0xB3;
-    g[2] = 0xF7;
-    b[0] = 0x72;
-    b[1] = 0xFF;
-    b[2] = 0xFF;
-    seg = (int)t2;
-    f = t2 - seg;
-    if (seg >= 2)
-    {
-        seg = 1;
-        f = 1.0;
-    }
-    if (endian)
-        return ((r[seg] + (int)((r[seg+1]-r[seg]) * f)) << 16) |
-               ((g[seg] + (int)((g[seg+1]-g[seg]) * f)) <<  8) |
-               ((b[seg] + (int)((b[seg+1]-b[seg]) * f))      );
-    else
-        return ((b[seg] + (int)((b[seg+1]-b[seg]) * f)) << 16) |
-               ((g[seg] + (int)((g[seg+1]-g[seg]) * f)) <<  8) |
-               ((r[seg] + (int)((r[seg+1]-r[seg]) * f))      );
+	colors->r[0] = 0x0A;
+	colors->r[1] = 0x2B;
+	colors->r[2] = 0xE0;
+	colors->g[0] = 0x24;
+	colors->g[1] = 0xB3;
+	colors->g[2] = 0xF7;
+	colors->b[0] = 0x72;
+	colors->b[1] = 0xFF;
+	colors->b[2] = 0xFF;
 }
 
-int	color(t_param *p, t_complex nm, int mandel, int endian)
+static int	make_color(t_colors *c, int seg, double f, int endian)
+{
+	if (endian)
+	{
+		return (((c->r[seg] + (int)((c->r[seg + 1] - c->r[seg]) * f)) << 16)
+			| ((c->g[seg] + (int)((c->g[seg + 1] - c->g[seg]) * f)) << 8)
+			| ((c->b[seg] + (int)((c->b[seg + 1] - c->b[seg]) * f))));
+	}
+	else
+	{
+		return (((c->b[seg] + (int)((c->b[seg + 1] - c->b[seg]) * f)) << 16)
+			| ((c->g[seg] + (int)((c->g[seg + 1] - c->g[seg]) * f)) << 8)
+			| ((c->r[seg] + (int)((c->r[seg + 1] - c->r[seg]) * f))));
+	}
+}
+
+void	init_colors_table(int *col_tab, int endian, const double scale)
+{
+	int			seg;
+	int			i;
+	double		f;
+	double		u;
+	t_colors	c;
+
+	init_colors(&c);
+	i = 0;
+	while (i < 512)
+	{
+		u = i * scale;
+		seg = (int)u;
+		f = u - seg;
+		if (seg >= 2)
+		{
+			seg = 1;
+			f = 1.0;
+		}
+		col_tab[i] = make_color(&c, seg, f, endian);
+		i++;
+	}
+}
+
+static int	color(t_param *p, t_complex nm, int mandel, int max_iter)
 {
 	double	t;
-    double want;
-    double zoom;
 
-    zoom = p->zoom;
-    if (zoom < 1e-12)
-        zoom = 1e-12;
-    want = 40.0 + 25.0 / zoom;
-    if (want < 1.0)
-        want = 1.0;
-    if (want > 5000.0)
-        want = 5000.0;
-    if (mandel)
-		t = iterate_mandel(nm, (int)want);
+	if (mandel)
+		t = iterate_mandel(nm, max_iter);
 	else
-		t = iterate_julia(p->c, nm, (int)want);
-    if (t > 1 || t < 0)
-        t = MAX(0.0, MIN(1.0, t));
-    if(t == 0)
-    {
-        if (endian != 0)
-            return (0x040000);
-        else
-            return (0x000004);
-    }
-    t = t * 2.0;
-    if (!(t >= 0.0))
-        t = 0.0;
-    if (t > 2.0)
-        t = 2.0;
-    return(which_color(t, endian));
+		t = iterate_julia(p->c, nm, max_iter);
+	if (t == 0)
+	{
+		if (p->endian != 0)
+			return (0x040000);
+		return (0x000004);
+	}
+	t = 1.0 - (t / (double)max_iter);
+	if (t > 1)
+		t = 1;
+	else if (t < 0)
+		t = 0;
+	return (p->col_tab[(int)(t * 511)]);
 }
 
-void    set_colors(t_param *p, int mandel, int endian, char *row)
+void	set_colors(t_param *p, int mandel, char *row, int max_iter)
 {
-    int         i;
-    int         j;
-    int         width;
-    double      upp;
-    t_complex   nm;
+	int			i;
+	int			j;
+	int			width;
+	double		upp;
+	t_complex	nm;
 
-    i = 0;
-    width = p->width;
-    upp = p->upp;
-    nm.y = p->y_start;
-    while (i < p->hight)
-    {
-        row = p->img_mem + i * p->line_size;
-        j = 0;
-        nm.x = p->x_start;
-        while (j < width)
-        {
-            *(((int *)row) + j) = color(p, nm, mandel, endian);
-            j++;
-            nm.x += upp;
-        }
-        i++;
-        nm.y -= upp;
-    }
-    mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+	i = 0;
+	upp = p->upp;
+	width = p->width;
+	nm.y = p->y_start;
+	while (i < p->hight)
+	{
+		row = p->img_mem + i * p->line_size;
+		j = 0;
+		nm.x = p->x_start;
+		while (j < width)
+		{
+			*(((int *)row) + j) = color(p, nm, mandel, max_iter);
+			j++;
+			nm.x += upp;
+		}
+		i++;
+		nm.y -= upp;
+	}
+	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 }

@@ -6,55 +6,60 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 03:16:00 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/29 04:41:40 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:25:00 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	close_window(t_param *param)
+static int	close_window(t_param *p)
 {
-	mlx_destroy_window(param->mlx, param->win);
-	// mlx_destroy_imge later
+	mlx_destroy_image(p->mlx, p->img);
+	mlx_destroy_window(p->mlx, p->win);
 	exit(0);
 	return (0);
 }
 
-int	handel_mouse(int button, int x, int y, t_param *param)
+static int	handel_mouse(int button, int x, int y, t_param *p)
 {
 	if (button == MOUSE_SCROLL_UP)
 	{
-		param->redraw = 1;
-		param->zoom /= 1.04;
-		param->mouse_x = x;
-		param->mouse_y = y;
+		p->zoom /= 1.04;
+		p->mouse_x = x;
+		p->mouse_y = y;
 	}
 	else if (button == MOUSE_SCROLL_DOWN)
 	{
-		param->redraw = 1;
-		param->zoom *= 1.04;
-		param->mouse_x = x;
-		param->mouse_y = y;
+		p->zoom *= 1.04;
+		p->mouse_x = x;
+		p->mouse_y = y;
 	}
-	// Later:
-	// Left click to re-center the view
-	// Right click to reset zoom
+	else if (button == MOUSE_LEFT_CLICK)
+	{
+		p->zoom = 1;
+		p->mouse_x = -1;
+		p->mouse_y = -1;
+		p->upp = p->base_upp;
+		p->x_start = -3;
+		p->y_start = (((921.0 * 6.0) / 821.0) / 2.0);
+	}
+	p->redraw = 1;
 	return (0);
 }
 
-int	handel_key(int keycode, t_param *param)
+static int	handel_key(int keycode, t_param *p)
 {
 	if (keycode == ESC_KEY)
 		exit(0);
 	if (keycode == PLUS_KEY)
 	{
-		param->zoom /= 1.04;
-		param->redraw = 1;
+		p->zoom /= 1.04;
+		p->redraw = 1;
 	}
 	else if (keycode == MINUS_KEY)
 	{
-		param->zoom *= 1.04;
-		param->redraw = 1;
+		p->zoom *= 1.04;
+		p->redraw = 1;
 	}
 	return (0);
 }

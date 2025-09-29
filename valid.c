@@ -6,13 +6,13 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:11:58 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/24 03:58:52 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/29 20:00:28 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	scan_number_part(char *nm, t_format *form, int *in_nm, int *i)
+static int	scan_number_part(char *nm, t_format *form, int *in_nm, int *i)
 {
 	while (*in_nm)
 	{
@@ -36,7 +36,7 @@ int	scan_number_part(char *nm, t_format *form, int *in_nm, int *i)
 	return (1);
 }
 
-int	is_valid(char *nm, t_format *form, int i, int in_nm)
+static int	is_valid(char *nm, t_format *form, int i, int in_nm)
 {
 	if (nm[i] == '-' || nm[i] == '+')
 		form->nm_sign = 44 - nm[i++];

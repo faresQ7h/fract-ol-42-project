@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fares-_-q7h <fares-_-q7h@student.42.fr>    +#+  +:+       +#+        */
+/*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 02:02:50 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/25 08:58:46 by fares-_-q7h      ###   ########.fr       */
+/*   Updated: 2025/09/29 22:10:16 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	exponent(char *nm, int e)
+static int	exponent(char *nm, int e)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int	exponent(char *nm, int e)
 	return (ft_atoi(&nm[i + 1]));
 }
 
-int	set_non_zero(char *nm, int first)
+static int	set_non_zero(char *nm, int first)
 {
 	int	f;
 	int	l;
@@ -52,7 +52,7 @@ int	set_non_zero(char *nm, int first)
 	}
 }
 
-int	normalize_cost(char *nm, int fnz, int dot)
+static int	normalize_cost(char *nm, int fnz, int dot)
 {
 	int	dot_pos;
 	int	tail;
@@ -80,7 +80,7 @@ int	normalize_cost(char *nm, int fnz, int dot)
 	return (dot_pos - fnz);
 }
 
-double	normalize_nm(char *nm, int fnz, int nm_len)
+static double	normalize_nm(char *nm, int fnz, int nm_len)
 {
 	double	val;
 	int		count;
@@ -129,8 +129,6 @@ double	parse_input(char *nm, t_format *form, int nm_len)
 		return (ft_putstr_fd("Error: overflow (double)\n", 2), exit(1), 0);
 	else if (k < -324 || (k == -324 && val < 4.9406564584124654))
 		return (ft_putstr_fd("Warning: detected double underflow);"
-								" treated as 0\n\n",
-								2),
-				0);
+				" treated as 0\n\n", 2), 0);
 	return (val * pow(10, k) * form->nm_sign);
 }

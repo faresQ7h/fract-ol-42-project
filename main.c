@@ -6,20 +6,20 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 01:08:26 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/29 04:26:14 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:09:19 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	check_input(t_param *p, int argc, char **argv)
+static int	check_input(t_param *p, int argc, char **argv)
 {
 	char		*msg;
 	t_format	form_x;
 	t_format	form_y;
 
 	msg = "Error: Invalid input\nusage: ./fract-ol"
-			"-m(Mandelbrot)\n   or: ./fract-ol -j(Julia) <x> <yi>\n";
+		"-m(Mandelbrot)\n   or: ./fract-ol -j(Julia) <x> <yi>\n";
 	if (argc == 2 && (!ft_strncmp(argv[1], "-m", ft_strlen(argv[1]))
 			|| !ft_strncmp(argv[1], "Mandelbrot", ft_strlen(argv[1]))
 			|| !ft_strncmp(argv[1], "mandelbrot", ft_strlen(argv[1]))))
@@ -35,6 +35,13 @@ int	check_input(t_param *p, int argc, char **argv)
 	}
 	ft_putstr_fd(msg, 2);
 	exit(1);
+}
+
+static void	init_new_img(t_param *p)
+{
+	p->img = mlx_new_image(p->mlx, p->width, p->hight);
+	p->img_mem = mlx_get_data_addr(p->img, &p->bpp, &p->line_size, &p->endian);
+	p->bpp /= 8;
 }
 
 int	main(int argc, char **argv)
@@ -58,6 +65,8 @@ int	main(int argc, char **argv)
 	param.base_upp = param.upp;
 	param.x_start = -3;
 	param.y_start = (((921.0 * 6.0) / 821.0) / 2.0);
+	init_new_img(&param);
+	init_colors_table(param.col_tab, param.endian, (2.0 / 511.0));
 	hook_all_events(&param);
 	mlx_loop(param.mlx);
 }
