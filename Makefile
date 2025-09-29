@@ -6,7 +6,7 @@
 #    By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/22 00:58:57 by farmoham          #+#    #+#              #
-#    Updated: 2025/09/29 22:52:40 by farmoham         ###   ########.fr        #
+#    Updated: 2025/09/29 23:33:04 by farmoham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,5 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBDIRE) fclean
-	$(MAKE) -C $(MLXDIRE) fclean
-
 
 re: fclean all
