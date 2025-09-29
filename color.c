@@ -6,7 +6,7 @@
 /*   By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 04:50:08 by farmoham          #+#    #+#             */
-/*   Updated: 2025/09/29 22:07:22 by farmoham         ###   ########.fr       */
+/*   Updated: 2025/09/30 00:45:31 by farmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	color(t_param *p, t_complex nm, int mandel, int max_iter)
 		t = iterate_mandel(nm, max_iter);
 	else
 		t = iterate_julia(p->c, nm, max_iter);
-	if (t == 0)
+	if (t <= 0)
 	{
 		if (p->endian != 0)
 			return (0x040000);
@@ -83,9 +83,7 @@ static int	color(t_param *p, t_complex nm, int mandel, int max_iter)
 	t = 1.0 - (t / (double)max_iter);
 	if (t > 1)
 		t = 1;
-	else if (t < 0)
-		t = 0;
-	return (p->col_tab[(int)(t * 511)]);
+	return (p->col_tab[(int)(t * 511 + 0.5)]);
 }
 
 void	set_colors(t_param *p, int mandel, char *row, int max_iter)
