@@ -6,7 +6,7 @@
 #    By: farmoham <farmoham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/22 00:58:57 by farmoham          #+#    #+#              #
-#    Updated: 2025/09/29 19:58:05 by farmoham         ###   ########.fr        #
+#    Updated: 2025/09/29 22:52:40 by farmoham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,15 +46,15 @@ $(MLXLIBE): $(MLXDIRE)
 $(LIBLIBE): $(LIBDIRE)
 	$(MAKE) -C $(LIBDIRE)
 
-fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBDIRE) fclean
-	$(MAKE) -C $(MLXDIRE) fclean
-
 clean:
 	rm -f *.o
 	$(MAKE) -C $(LIBDIRE) clean
 	$(MAKE) -C $(MLXDIRE) clean
+
+fclean: clean
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBDIRE) fclean
+	$(MAKE) -C $(MLXDIRE) fclean
 
 
 re: fclean all
