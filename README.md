@@ -38,8 +38,8 @@ For Mandelbrot just run: ```./fract-ol -m```
 ![Mandelbrot](./assets/mandelbrot.png)  
 
 ### Julia  
-![Julia](julia_-0.7_0.27015.png)
-![Julia](julia_0.335_0.355.png)
+![Julia](./assets/julia_-0.7_0.27015.png)
+![Julia](./assets/julia_0.335_0.355.png)
 
 
 ## Controls
