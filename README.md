@@ -6,10 +6,10 @@ All the fractal generation, zooming, movement, and coloring are implemented in t
 
 ## Features
 
-1. Both Mandelbrot and Julia fractals
-2. Smooth zooming (mouse scroll or +/-)
-3. Adjustable Julia seeds via command-line arguments
-4. Works on both macOS and Linux
+-Both Mandelbrot and Julia fractals  
+-Smooth zooming (mouse scroll or +/-)  
+-Adjustable Julia seeds via command-line arguments  
+-Works on both macOS and Linux  
 
 
 ## Installation
