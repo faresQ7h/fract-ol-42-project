@@ -23,15 +23,15 @@ This will create an executable named ./fract-ol
 
 ## Usage
 
-Run the program by specifying which fractal to display:
-
-./fract-ol mandelbrot (-m)
-./fract-ol julia (-j)
-Note: (-m/-j) are easy shortcuts.
-
-Important: Julia must be called with a custom seed following this format: ```./fract-ol -j(julia) <x> <yi>```
-Example: ```./fract-ol julia -0.7 0.27015```
-For Mandelbrot just run: ```./fract-ol -m```
+Run the program by specifying which fractal to display:  
+  
+./fract-ol mandelbrot (-m)  
+./fract-ol julia (-j)  
+Note: (-m/-j) are easy shortcuts.  
+  
+Important: Julia must be called with a custom seed following this format: ```./fract-ol -j(julia) <x> <yi>```  
+Example: ```./fract-ol julia -0.7 0.27015```  
+For Mandelbrot just run: ```./fract-ol -m```  
 ## Preview  
 
 ### Mandelbrot  
@@ -45,13 +45,13 @@ For Mandelbrot just run: ```./fract-ol -m```
 
 ## Controls
 
--Mouse scroll -> Zoom in / out
--(+/-) keys -> Zoom in / out
--Esc -> Quit
--Mouse left click -> reset the drawing to the start
+-Mouse scroll -> Zoom in / out  
+-(+/-) keys -> Zoom in / out  
+-Esc -> Quit  
+-Mouse left click -> reset the drawing to the start  
 
 
 ## Compatibility
 
-Linux: Requires X11 development libraries. If missing, install with:```sudo apt install libx11-dev libxext-dev```
-macOS: Uses the system’s MiniLibX, so no extra setup is usually needed.
+Linux: Requires X11 development libraries. If missing, install with:```sudo apt install libx11-dev libxext-dev```  
+macOS: Uses the system’s MiniLibX, so no extra setup is usually needed.  
