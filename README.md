@@ -14,9 +14,9 @@ All the fractal generation, zooming, movement, and coloring are implemented in t
 
 ## Installation
 
-1- Clone the repository: ```git clone https://github.com/faresQ7h/fract-ol-42-project.git```
-2- Enter the folder: ```cd fract-ol```
-3- build using make: ```make```
+1. Clone the repository: ```git clone https://github.com/faresQ7h/fract-ol-42-project.git```
+2. Enter the folder: ```cd fract-ol```
+3. build using make: ```make```
 
 This will create an executable named ./fract-ol
 
